@@ -62,7 +62,7 @@ const Body = () => {
           ))}
         </div>
       </div>
-      {games >= 1 && (
+      {currentQuestionIndex === 10 && (
         <div className="games-container">
           <div className="games">
             <div className="played">Games played: {games}</div>

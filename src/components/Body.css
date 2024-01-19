@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 20vh 1rem 0 1rem;
+  margin: 30vh 1rem 0 1rem;
   .question {
     margin: 0 auto;
     border: 1px solid white;
@@ -47,6 +47,7 @@ button {
   border-radius: 5px;
   background-color: rgb(20, 195, 238);
   cursor: pointer;
+  color: black;
   &:hover {
     background-color: rgb(15, 132, 161);
   }
@@ -57,7 +58,6 @@ button {
   margin: 0 auto;
   display: flex;
   font-weight: bold;
-
 }
 .games-container {
   display:flex;
