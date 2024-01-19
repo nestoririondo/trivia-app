@@ -10,11 +10,10 @@ const getQuestions = async (setQuestions, setLoading) => {
   try {
     const response = await axios.get(`${TRIVIA_API}&limit=${MAX_QUESTIONS}`);
     setQuestions(response.data);
-    console.log(response.data);
   } catch (error) {
     console.log(error);
   } finally {
-    setLoading(false)
+    setLoading(false);
   }
 };
 
@@ -22,37 +21,57 @@ const Body = () => {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState([]);
-  const [games, setGames] = useState(0)
-  const [loading, setLoading] = useState(true)
+  const [games, setGames] = useState(0);
+  const [points, setPoints] = useState(0);
+  const [averagePoints, setAveragePoints] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getQuestions(setQuestions, setLoading);
+    setAveragePoints(points / games);
   }, [games]);
 
   const handleRestart = () => {
-    setLoading(true)
     setCurrentQuestionIndex(0);
-    setAnswers([])
-    setGames(games+1)
+    setAnswers([]);
   };
 
   return (
     <>
-      {!loading && questions.length > 0 && currentQuestionIndex !== MAX_QUESTIONS && (
-        <QuestionCard
-          question={questions[currentQuestionIndex]}
-          setCurrentQuestionIndex={setCurrentQuestionIndex}
-          setAnswers={setAnswers}
-        />
-      )}
+      <div className="content">
+        {loading ? <div>Loading...</div> : null}
+        {!loading &&
+          questions.length > 0 &&
+          currentQuestionIndex !== MAX_QUESTIONS && (
+            <QuestionCard
+              question={questions[currentQuestionIndex]}
+              setCurrentQuestionIndex={setCurrentQuestionIndex}
+              setAnswers={setAnswers}
+              setPoints={setPoints}
+              setGames={setGames}
+            />
+          )}
         {currentQuestionIndex === 10 && (
-          <button onClick={handleRestart}>Restart</button>
+          <button className="restart-btn" onClick={handleRestart}>
+            Restart
+          </button>
         )}
-      <div className="answers">
-        {answers.map((answer) => (
-          <div className={`answer-box ${answer}`}></div>
-        ))}
+        <div className="answers">
+          {answers.map((answer, index) => (
+            <div key={index} className={`answer-box ${answer}`}></div>
+          ))}
+        </div>
       </div>
+      {games >= 1 && (
+        <div className="games-container">
+          <div className="games">
+            <div className="played">Games played: {games}</div>
+            <div className="average">
+              Average points: {averagePoints.toFixed(2)}
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };

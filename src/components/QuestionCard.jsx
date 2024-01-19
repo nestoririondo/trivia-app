@@ -1,6 +1,12 @@
 import { shuffle } from "../utils/arrays";
 
-const QuestionCard = ({ question, setCurrentQuestionIndex, setAnswers }) => {
+const QuestionCard = ({
+  question,
+  setCurrentQuestionIndex,
+  setAnswers,
+  setPoints,
+  setGames
+}) => {
   let answers = shuffle([
     ...question.incorrectAnswers.map((answer) => ({
       text: answer,
@@ -12,10 +18,18 @@ const QuestionCard = ({ question, setCurrentQuestionIndex, setAnswers }) => {
   let formattedQuestion = question.question.replace(/&quot;/g, '"');
 
   const handleAnswerClick = (answer) => {
-    answer.correct
-      ? setAnswers((prev) => [...prev, "correct"])
-      : setAnswers((prev) => [...prev, "incorrect"]);
-    setCurrentQuestionIndex((prev) => prev + 1);
+    if (answer.correct) {
+      setAnswers((prev) => [...prev, "correct"]);
+      setPoints((prevPoints) => prevPoints + 1);
+    } else {
+      setAnswers((prev) => [...prev, "incorrect"]);
+    }
+    setCurrentQuestionIndex((prev) => {
+      if (prev + 1 === 10) {
+        setGames((prevGames) => prevGames + 1);
+      }
+      return prev + 1;
+    });
   };
 
   return (

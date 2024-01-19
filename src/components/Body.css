@@ -1,19 +1,26 @@
-.question {
-  margin: 0 auto;
-  border: 1px solid white;
-  text-align: center;
-  padding: 2rem;
-  border-radius: 10px;
-  .question-text {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    max-width: 30vw;
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30vh;
+  .question {
+    margin: 0 auto;
+    border: 1px solid white;
+    text-align: center;
+    padding: 2rem;
+    border-radius: 10px;
+    .question-text {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      max-width: 30vw;
+    }
+    .question-answers {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+    }
   }
-  .question-answers {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-}
 }
 
 .answers {
@@ -35,7 +42,34 @@
   }
 }
 button {
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  background-color: rgb(20, 195, 238);
+  cursor: pointer;
+  &:hover {
+    background-color: rgb(15, 132, 161);
+  }
+  &:active {
+    background-color: rgb(12, 105, 128);  }
+}
+.restart-btn {
+  margin: 0 auto;
+  display: flex;
+  font-weight: bold;
+}
+.games-container {
+  display:flex;
+  justify-content: center;
+  .games {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: 1px solid grey;
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    align-items: center;
+  }  
 }
