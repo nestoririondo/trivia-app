@@ -1,1 +1,1 @@
-export const TRIVIA_API = "https://opentdb.com/api.php?amount=10&type=multiple"
+export const TRIVIA_API = "https://the-trivia-api.com/api/questions?categories=arts_and_literature"
